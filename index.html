@@ -1,0 +1,165 @@
+<!doctype HTML>
+
+<html>
+    <head>
+        <title> Gaming for Pros </title>
+
+        <style>
+        img{
+            width: 200px;
+        }
+        input{
+            width: 50px;
+        }
+        div{
+            background-color: darkturquoise;
+            width:300;
+        }
+        body{
+            background-color: rebeccapurple;
+        }
+        h1{
+            color: white;
+            text-align: center;
+            font-size: 80px;
+            font-family: impact;
+            border-style: double;
+            border-width: 25px;
+
+        }
+        h2{
+            color: white;
+            font-family: times new roman;
+            font-size: 40px;
+            border-style: double;
+            border-width: 5px;
+        }
+        h3{
+            color:white;
+            font-family: times new roman;
+            font-size: 60px;
+            text-align: center;
+
+        }
+        p{
+            font-family: comic sans ms;
+            font-size: 20px;
+            color: black;
+        }
+        button{
+            font-family: comic sans ms;
+            font-size: 15px;
+        }
+        div{
+            font-family: comic sans ms;
+            font-size: 20px;
+        }
+        input{
+            font-family: comic sans ms;
+        }
+
+        </style>
+        
+        <script>
+                
+                var pr1 = 10, wpr1 = 5;
+                var pr2 = 14, wpr2 = 7;
+                var pr3 = 13, wpr3 = 6;
+                var tax_rate = 8.75;
+            function prices(){
+                 document.getElementById("span1").innerHTML = "Price: $"+pr1;
+                 document.getElementById("span2").innerHTML = "Price: $"+pr2;
+                 document.getElementById("span3").innerHTML = "Price: $"+pr3;
+            }
+            function processorder(){
+                 //code the calculations, shipping decisions and output display
+                 var q1 = parseFloat(document.getElementById("q1").value);
+                            
+                var q2 = parseFloat(document.getElementById("q2").value);
+                var q3 = parseFloat(document.getElementById("q3").value);
+                var output = document.getElementById("output");
+                var Customer_Subtotal = ( pr1 * q1 ) + ( pr2 * q2 )+( pr3 * q3 );
+                var Company_Subtotal = ( wpr1 * q1 ) + ( wpr2 * q2 )+( wpr3 * q3 );
+                var profit = Customer_Subtotal  -  Company_Subtotal;
+                var items_sold = q1 + q2 + q3;
+                var tax = Customer_Subtotal * tax_rate/100 ;
+                var shipping = 0;
+                if(Customer_Subtotal < 100){
+                        shipping = 25;
+                }else if(Customer_Subtotal >= 100  && Customer_Subtotal <= 200){
+                        shipping = 10;
+                }else{
+                    shipping = 0;
+                    }
+                            
+                var Customer_total = Customer_Subtotal + tax + shipping;
+                var build = " ";
+                        
+                 build += "*Customer Info* <br>";
+                 build += "_____________________<br>";
+                 build += "Subtotal: $" + Customer_Subtotal + "<br>";
+                 build += "Tax: $" + tax + "<br>";
+                 build += "Shipping: $" + shipping + " <br>";
+                 build += "Total: $" + Customer_total + "<br>";
+                 build += "*Company Info* <br>";
+                 build += "_____________________ <br>";
+                 build += "Customer Subtotal: $" + Customer_Subtotal + "<br> ";
+                 build += "Company Subtotal: $" + Company_Subtotal + "<br> ";
+                 build += "Profit: $" + profit + "<br> ";
+                 build += "Total Items Sold: " + items_sold + "<br> ";
+                 output.innerHTML = build;
+            }
+        </script>
+        
+
+    </head>
+
+    <body onload="prices()">
+        <h1>Gaming for Pros</h1>
+        <h3>PS4 Games!</h3>
+        <!--battlefront-->
+        <h2>Battlefront</h2>
+        <div>
+            <img src="battlefront.jpg"><br>
+            <p> Battlefront is the ultimate Star Wars battle 
+                experience, brought to life by the creators of 
+                Battlefield.Fight in epic Star Wars battles on 
+                iconic planets and rise through the ranks playing 
+                as the heroic Rebellion or the evil Galactic Empire.</p><br>
+            <span id="span1"></span>
+            <input type="text"  id="q1" placeholder="qty">
+        </div>
+        <hr>
+        <!--shadow of war-->
+        <h2>Shadow of War</h2>
+        <div>
+            <img src="shadow_of_war.jpg"><br>
+            <p> Shadow of Mordor, Middle-earth: Shadow of War 
+                features an original story with the return of 
+                Talion and Celebrimbor, who must go behind enemy
+                lines to forge an army and turn all of Mordor 
+                against the Dark Lord, Sauron.</p><br>
+            <span id="span2"></span>
+            <input type="text" id="q2" placeholder="qty">
+        </div>
+        <hr>
+        <!--watch dogs-->
+        <h2>Watch Dogs 2</h2>
+        <div>
+            <img src="watch_dogs.jpg"><br>
+            <p> Aiden Pearce is a hacker that has hacked a system 
+                called ctOS (Central Operating System). When Aiden 
+                takes his hacking skills too far and hacks the wrong 
+                people they retaliate by killing his niece but Aiden 
+                Pearce swears vengeance on ctOS and all who control it.</p><br>
+            <span id="span3"></span>
+            <input type="text" id="q3" placeholder="qty">
+        </div>
+
+        <!-- Payment and processing -->
+        <button onclick="processorder()"> Process Order </button>
+        <br>
+        <div id="output"></div>
+
+    </body>
+</html>
